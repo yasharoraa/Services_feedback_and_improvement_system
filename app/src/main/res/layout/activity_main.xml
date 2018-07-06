@@ -21,6 +21,8 @@
         android:background="@color/colorPrimary"
         app:backgroundTint="@android:color/white"
         app:itemTextColor="@android:color/white"
+        app:itemIconTint="@android:color/white"
+
 
 
         android:fitsSystemWindows="true"
