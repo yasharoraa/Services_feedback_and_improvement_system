@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Hackathon5.0</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
+
+    <string name="about_emitra">"ईमित्रा की जानकारी "</string>
+    <string name="about_bhamashah">भामाशाह की जानकारी</string>
+    <string name="emitra_feedback">ईमित्रा के लिय सुझाव</string>
+    <string name="bhamashah_feedback">भामाशाह के लिय सुझाव</string>
+    <string name="new_services_feedback">नई सेवाओं के लिए सुझाव दें</string>
+    <string name="new_serices_title">नई सेवाओं के बारे में जानें</string>
+</resources>

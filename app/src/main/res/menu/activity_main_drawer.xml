@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_emitra"
+
+            android:title="@string/about_emitra" />
+        <item
+            android:id="@+id/nav_bhamashah"
+
+            android:title="@string/about_bhamashah" />
+        <item
+            android:id="@+id/nav_emitra_feedback"
+
+            android:title="@string/emitra_feedback" />
+        <item
+            android:id="@+id/nav_bhamashah_feedback"
+
+            android:title="@string/bhamashah_feedback" />
+    </group>
+
+    <item android:title="   ">
+        <menu>
+            <item
+                android:id="@+id/nav_new_services_feedback"
+
+                android:title="@string/new_services_feedback" />
+            <item
+                android:id="@+id/nav_new_services"
+
+                android:title="@string/new_serices_title" />
+        </menu>
+    </item>
+
+</menu>
