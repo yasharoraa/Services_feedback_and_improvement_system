@@ -17,4 +17,6 @@
     <string name="or_record_audio_file">या अपने सुझाव रिकॉर्ड करें</string>
     <string name="start_recodring">रिकॉर्डिंग शुरू करने के लिए यहां क्लिक करें</string>
     <string name="stop_recording">रिकॉर्डिंग को रोकने के लिए यहां क्लिक करें</string>
+    <string name="log_in_user">उपयोगकर्ता के रूप में लॉग इन करें</string>
+    <string name="log_in_as_gov">सरकारी प्राधिकरण के रूप में लॉगिन करें</string>
 </resources>

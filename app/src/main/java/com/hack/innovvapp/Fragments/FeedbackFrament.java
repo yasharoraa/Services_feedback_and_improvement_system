@@ -129,6 +129,7 @@ public class FeedbackFrament extends Fragment {
 
         if(!recoding_status){
             startRecord();
+            micRecordTextView.setText(R.string.start_recodring);
 
         }
 
@@ -179,6 +180,7 @@ public class FeedbackFrament extends Fragment {
                 startRecording();
                 recoding_status = true;
                 stopRecord();
+                micRecordTextView.setText(R.string.stop_recording);
 
 
 
@@ -205,6 +207,7 @@ public class FeedbackFrament extends Fragment {
                 if (noimageView!=null){
                     noimageView.setVisibility(View.VISIBLE);
                 }
+                micRecordTextView.setText(R.string.start_recodring);
 
                 startRecord();
             }
@@ -287,6 +290,9 @@ public class FeedbackFrament extends Fragment {
     }
 
     private void upladAudioObject(){
+
+        timerTextView.setBase(SystemClock.elapsedRealtime());
+        timerTextView.stop();
 
         showProgress(true);
 
