@@ -18,11 +18,15 @@ import com.hack.innovvapp.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static String FEEDBACK_TYPE ="bundle";
+
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -74,26 +80,47 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_emitra) {
+            toolbar.setTitle(getResources().getString(R.string.about_emitra));
 
         } else if (id == R.id.nav_bhamashah) {
+            toolbar.setTitle(getResources().getString(R.string.about_bhamashah));
+
 
 
 
 
 
         } else if (id == R.id.nav_emitra_feedback) {
+            toolbar.setTitle(getResources().getString(R.string.emitra_feedback));
 
             FeedbackFrament feedbackFrament = new FeedbackFrament();
-            changeMainFragmentWithBack(MainActivity.this,feedbackFrament);
+            Bundle bundle = new Bundle();
+            bundle.putInt(FEEDBACK_TYPE,1);
+            feedbackFrament.setArguments(bundle);
+            changeMainFragment(MainActivity.this,feedbackFrament);
 
 
 
 
         } else if (id == R.id.nav_bhamashah_feedback) {
+            toolbar.setTitle(getResources().getString(R.string.bhamashah_feedback));
+            FeedbackFrament feedbackFrament = new FeedbackFrament();
+            Bundle bundle = new Bundle();
+            bundle.putInt(FEEDBACK_TYPE,2);
+            feedbackFrament.setArguments(bundle);
+            changeMainFragment(MainActivity.this,feedbackFrament);
 
         } else if (id == R.id.nav_new_services_feedback) {
 
+            toolbar.setTitle(getResources().getString(R.string.new_services_feedback));
+            FeedbackFrament feedbackFrament = new FeedbackFrament();
+            Bundle bundle = new Bundle();
+            bundle.putInt(FEEDBACK_TYPE,3);
+            feedbackFrament.setArguments(bundle);
+            changeMainFragment(MainActivity.this,feedbackFrament);
+
         } else if (id == R.id.nav_new_services) {
+            toolbar.setTitle(getResources().getString(R.string.new_serices_title));
 
         }
 

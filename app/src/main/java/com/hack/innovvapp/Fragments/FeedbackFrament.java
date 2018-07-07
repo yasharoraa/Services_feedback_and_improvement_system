@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,16 +25,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.hack.innovvapp.Activities.MainActivity;
+import com.hack.innovvapp.Models.AudioFeedback;
+import com.hack.innovvapp.Models.TextFeedback;
 import com.hack.innovvapp.R;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
 
@@ -68,6 +77,9 @@ public class FeedbackFrament extends Fragment {
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+    @BindView(R.id.button_submit)
+    Button submitButton;
+
     private MediaRecorder mRecorder;
     private long mStartTime = 0;
 
@@ -76,6 +88,8 @@ public class FeedbackFrament extends Fragment {
 
     private boolean recoding_status = false;
     private Unbinder unbinder;
+
+    private int type;
 
 
     private FirebaseDatabase firebaseDatabase;
@@ -88,7 +102,9 @@ public class FeedbackFrament extends Fragment {
 
     Random random = new Random();
 
-    private final long randomNumber=random.nextInt(99999999 - 10000000);
+    public static  String PATH_TEXT = "text";
+
+    private long randomNumber=random.nextInt(99999999 - 10000000);
 
 
 
@@ -105,6 +121,12 @@ public class FeedbackFrament extends Fragment {
         databaseReference = firebaseDatabase.getReference();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+        if (getArguments()!=null){
+           this.type = getArguments().getInt(MainActivity.FEEDBACK_TYPE);
+        }
+
+        progressBar.setVisibility(View.GONE);
+
         if(!recoding_status){
             startRecord();
 
@@ -116,6 +138,31 @@ public class FeedbackFrament extends Fragment {
                 upladAudioObject();
             }
         });
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (feedBackEditText.getText().toString()!=null){
+                    TextFeedback textFeedback = new TextFeedback();
+
+                    textFeedback.setFeedback(feedBackEditText.getText().toString());
+                    textFeedback.setType(type);
+
+                    HashMap hashMap = new HashMap();
+
+                    hashMap.put("text",textFeedback);
+
+                    databaseReference.child(PATH_TEXT).child(String.valueOf(randomNumber)).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(getContext(),"success",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                }
+            }
+        });
+
 
 
         return rootView;
@@ -241,12 +288,55 @@ public class FeedbackFrament extends Fragment {
 
     private void upladAudioObject(){
 
+        showProgress(true);
+
         Random random = new Random();
 
         final long randomNumber=random.nextInt(99999999 - 10000000);
         if (mOutputFile!=null){
 
-            storageReference.child(PATH_AUDIO).child(String.valueOf(randomNumber)).putFile(FileProvider.getUriForFile(getContext(),getContext().getApplicationContext().getPackageName()+".com.hack.innovvapp.provider",mOutputFile));
+            storageReference.child(PATH_AUDIO).child(String.valueOf(randomNumber))
+                    .putFile(FileProvider.getUriForFile(getContext(),getContext().getApplicationContext().getPackageName()+".com.hack.innovvapp.provider",mOutputFile))
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                            AudioFeedback audioFeedback = new AudioFeedback();
+
+                            audioFeedback.setAudioPath(String.valueOf(randomNumber));
+                            audioFeedback.setType(type);
+
+
+                            HashMap hashMap = new HashMap();
+                            hashMap.put("audio",audioFeedback);
+
+                            databaseReference.child(PATH_AUDIO).child(String.valueOf(randomNumber)).setValue(hashMap, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+
+                                    showProgress(false);
+                                    Toast.makeText(getContext(),"audio upload success",Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            });
+
+
+
+                            micImageView.setImageResource(R.drawable.ic_mic_black_big);
+                            if (yesImageView!=null){
+                                yesImageView.setVisibility(View.GONE);
+
+                            }
+                            if (noimageView!=null){
+                                noimageView.setVisibility(View.GONE);
+                            }
+
+
+
+                        }
+                    });
 
 
 
