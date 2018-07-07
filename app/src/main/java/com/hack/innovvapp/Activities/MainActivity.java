@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hack.innovvapp.Fragments.FeedbackFrament;
+import com.hack.innovvapp.Fragments.InformationFragment;
 import com.hack.innovvapp.R;
 
 public class MainActivity extends AppCompatActivity
@@ -82,8 +83,21 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_emitra) {
             toolbar.setTitle(getResources().getString(R.string.about_emitra));
 
+            InformationFragment informationFragment = new InformationFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(FEEDBACK_TYPE,0);
+            informationFragment.setArguments(bundle);
+            changeMainFragment(this,informationFragment);
+
+
         } else if (id == R.id.nav_bhamashah) {
             toolbar.setTitle(getResources().getString(R.string.about_bhamashah));
+
+            InformationFragment informationFragment = new InformationFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(FEEDBACK_TYPE,1);
+            informationFragment.setArguments(bundle);
+            changeMainFragment(this,informationFragment);
 
 
 
@@ -121,6 +135,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_new_services) {
             toolbar.setTitle(getResources().getString(R.string.new_serices_title));
+
+            InformationFragment informationFragment = new InformationFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(FEEDBACK_TYPE,2);
+            informationFragment.setArguments(bundle);
+            changeMainFragment(this,informationFragment);
+
 
         }
 
