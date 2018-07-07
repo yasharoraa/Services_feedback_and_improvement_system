@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hack.innovvapp.Fragments.EmitrafeedbackFrament;
 import com.hack.innovvapp.R;
 
 public class MainActivity extends AppCompatActivity
@@ -74,10 +75,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_emitra) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_bhamashah) {
 
+
+
         } else if (id == R.id.nav_emitra_feedback) {
+
 
         } else if (id == R.id.nav_bhamashah_feedback) {
 
