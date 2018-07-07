@@ -41,13 +41,22 @@
         android:layout_centerInParent="true"
         />
         <TextView
+            android:id="@+id/record_timer_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            tools:text="00:52"
+            android:textColor="@color/colorPrimary"
+            android:layout_below="@id/mic_image_view"
+            android:layout_centerHorizontal="true"/>
+        <TextView
             android:id="@+id/mic_record_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="@string/start_recodring"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/mic_image_view"
+            android:layout_below="@+id/record_timer_text_view"
             android:padding="10dp"
             />
 

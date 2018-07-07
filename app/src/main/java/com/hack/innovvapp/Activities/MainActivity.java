@@ -2,6 +2,8 @@ package com.hack.innovvapp.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hack.innovvapp.Fragments.FeedbackFrament;
 import com.hack.innovvapp.R;
 
 public class MainActivity extends AppCompatActivity
@@ -80,6 +83,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_emitra_feedback) {
 
+            FeedbackFrament feedbackFrament = new FeedbackFrament();
+            changeMainFragmentWithBack(MainActivity.this,feedbackFrament);
+
+
 
 
         } else if (id == R.id.nav_bhamashah_feedback) {
@@ -94,4 +101,19 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public static void changeMainFragment(FragmentActivity fragmentActivity, Fragment fragment){
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_main, fragment)
+                .commit();
+    }
+    public static void changeMainFragmentWithBack(FragmentActivity fragmentActivity, Fragment fragment){
+
+        fragmentActivity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_main, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
 }
