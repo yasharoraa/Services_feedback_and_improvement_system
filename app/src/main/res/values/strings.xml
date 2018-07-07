@@ -13,4 +13,8 @@
     <string name="bhamashah_feedback">भामाशाह के लिय सुझाव</string>
     <string name="new_services_feedback">नई सेवाओं के लिए सुझाव दें</string>
     <string name="new_serices_title">नई सेवाओं के बारे में जानें</string>
+    <string name="write_suggestions">यहां अपने सुझाव लिखें</string>
+    <string name="or_record_audio_file">या अपने सुझाव रिकॉर्ड करें</string>
+    <string name="start_recodring">रिकॉर्डिंग शुरू करने के लिए यहां क्लिक करें</string>
+    <string name="stop_recording">रिकॉर्डिंग को रोकने के लिए यहां क्लिक करें</string>
 </resources>

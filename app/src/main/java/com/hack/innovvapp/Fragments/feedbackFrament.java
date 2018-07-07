@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class EmitrafeedbackFrament extends Fragment {
+public class feedbackFrament extends Fragment {
 
     @Nullable
     @Override
