@@ -38,6 +38,18 @@ public class MainActivity extends AppCompatActivity
 
 
 
+        InformationFragment informationFragment = new InformationFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(FEEDBACK_TYPE,0);
+        informationFragment.setArguments(bundle);
+        changeMainFragment(this,informationFragment);
+
+        toolbar.setTitle(getResources().getString(R.string.about_emitra));
+
+
+
+
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }

@@ -19,4 +19,7 @@
     <string name="stop_recording">रिकॉर्डिंग को रोकने के लिए यहां क्लिक करें</string>
     <string name="log_in_user">उपयोगकर्ता के रूप में लॉग इन करें</string>
     <string name="log_in_as_gov">सरकारी प्राधिकरण के रूप में लॉगिन करें</string>
+    <string name="bhamashah_title">भामाशाह</string>
+    <string name="emitra_title">ईमित्रा</string>
+    <string name="other_title">अन्य</string>
 </resources>
